@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # m is size of coins array (number of different coins)
 import sys
 import helpers
