@@ -24,6 +24,7 @@ def runAlgorithm(filename, algorithm):
 		solutions.append(temp)
 		solutions.append(sum(temp))
 	with open(makeFileName(filename) + ".txt",'w') as f:
+		f.write("Algorithm " + algorithm.__name__ + ":\n")
 		for solution in solutions:
 			f.write(str(solution) + '\n')
 	f.close()
