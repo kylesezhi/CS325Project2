@@ -25,11 +25,13 @@ def changedp(coinValueList,change):
 
   coin = change
 
+  # put each coin used in usedArr (ex: [1,7,7,10] for coins [1,7,10])
   while coin > 0:
     thisCoin = coinsUsed[coin]
     usedArr.append(thisCoin)
     coin = coin - thisCoin
 
+  # put the counts for the coins into coinTally (ex: [1,2,1] for coins [1,7,10])
   for i in coinValueList:
     coinTally.append(usedArr.count(i))
 
