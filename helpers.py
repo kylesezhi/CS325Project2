@@ -3,6 +3,7 @@
 import ast # to parse text to python object
 import os # to append to filenames
 import csv
+import time
 
 def importData(filename):
 	results = []
@@ -32,12 +33,22 @@ def runAlgorithm(filename, algorithm):
 def doQuestion(filename, algorithm):
 	problems = importData(filename)
 	solutions = []
+	timedata = [] # - Steven
 	for i in range(0,len(problems)-1,2): # go thru the list in pairs
+		start = time.clock() # Time-related additions added later
 		temp = algorithm(problems[i], problems[i+1])
+		end = time.clock()
+		speed = end - start
+		timedata.append([problems[i+1], speed])
 		solutions.append([problems[i+1], sum(temp)])
 	# WRITING TO CSV
 	with open(makeFileName(filename) + "-" + algorithm.__name__ + ".csv", 'w') as f:
 		writer = csv.writer(f, delimiter=',')
 		for solution in solutions:
 			writer.writerow(solution)
+	f.close()
+	with open(makeFileName(filename) + "-" + algorithm.__name__ + "time" + ".csv", 'wb') as f:
+		writer = csv.writer(f, delimiter=',')
+		for line in timedata:
+			writer.writerow(line)
 	f.close()
