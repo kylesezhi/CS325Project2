@@ -34,12 +34,14 @@ def doQuestion(filename, algorithm):
 	problems = importData(filename)
 	solutions = []
 	timedata = [] # - Steven
+	timeSum = 0
 	for i in range(0,len(problems)-1,2): # go thru the list in pairs
 		start = time.clock() # Time-related additions added later
 		temp = algorithm(problems[i], problems[i+1])
 		end = time.clock()
 		speed = end - start
-		timedata.append([problems[i+1], speed])
+		timeSum = timeSum + speed
+		timedata.append([problems[i+1], timeSum])
 		solutions.append([problems[i+1], sum(temp)])
 	# WRITING TO CSV
 	with open(makeFileName(filename) + "-" + algorithm.__name__ + ".csv", 'w') as f:
